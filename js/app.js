@@ -5,6 +5,9 @@
 const API_KEY = 'd07d1182ccdb4852aa8e83f3bdad064d';
 let url1 = 'https://newsapi.org/v2/top-headlines?apiKey=040f1f79da244fbbadac58b17faa81d7&sources=bleacher-report'
 let url2 = 'https://newsapi.org/v2/top-headlines?apiKey=040f1f79da244fbbadac58b17faa81d7&sources=engadget'
+let url3 = 'https://newsapi.org/v2/top-headlines?apiKey=040f1f79da244fbbadac58b17faa81d7&sources=ign'
+let url4 = 'https://newsapi.org/v2/top-headlines?apiKey=040f1f79da244fbbadac58b17faa81d7&sources=msnbc'
+
 
 // console.log(xhr);
 // let url = 'https://newsapi.org/v2/top-headlines?apiKey=040f1f79da244fbbadac58b17faa81d7&sources=bleacher-report'
@@ -44,7 +47,6 @@ function bleacherReport() {
   xhr = new XMLHttpRequest()
   console.log(xhr);
 
-  //xhr.open('GET', url1, true)
 
   // open function
   xhr.open('GET', url1, true)
@@ -73,10 +75,64 @@ function engadget() {
   xhr = new XMLHttpRequest()
   console.log(xhr);
 
-  //xhr.open('GET', url2, true)
 
   // open function
   xhr.open('GET', url2, true)
+
+  xhr.onload = function () {
+    if (this.status == 200) {
+      console.log(this.responseText);
+    } else if (this.status == 404) {
+      document.getElementById("text").innerHTML = "NOT FOUND"
+    }
+  }
+  xhr.onerror = function () {
+    console.log("request errors");
+    document.getElementById("response").innerHTML = this.responseText
+
+  }
+  //sends request
+  xhr.send()
+
+}
+
+document.getElementById('ign').addEventListener('click', ign)
+
+function ign() {
+  xhr = new XMLHttpRequest()
+  console.log(xhr);
+
+
+  // open function
+  xhr.open('GET', url3, true)
+
+  xhr.onload = function () {
+    if (this.status == 200) {
+      console.log(this.responseText);
+    } else if (this.status == 404) {
+      document.getElementById("text").innerHTML = "NOT FOUND"
+    }
+  }
+  xhr.onerror = function () {
+    console.log("request errors");
+    document.getElementById("response").innerHTML = this.responseText
+
+  }
+  //sends request
+  xhr.send()
+
+}
+
+document.getElementById('msnbc').addEventListener('click', msnbc)
+
+function msnbc() {
+  xhr = new XMLHttpRequest()
+  console.log(xhr);
+
+
+
+  // open function
+  xhr.open('GET', url4, true)
 
   xhr.onload = function () {
     if (this.status == 200) {
